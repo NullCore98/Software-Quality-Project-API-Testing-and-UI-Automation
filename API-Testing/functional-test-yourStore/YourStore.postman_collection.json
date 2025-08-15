@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "0c6149ca-24a6-4405-a892-8edaca2cca52",
-		"name": "YourStore-functionalTesting",
+		"name": "YourStore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "24007094",
 		"_collection_link": "https://interstellar-astronaut-442545.postman.co/workspace/Your-Store~2b00a712-8456-48b5-9824-b484acbf4c74/collection/24007094-0c6149ca-24a6-4405-a892-8edaca2cca52?action=share&source=collection_link&creator=24007094"
@@ -11,106 +11,602 @@
 			"name": "1:retrieveOnlyElectronics",
 			"item": [
 				{
-					"name": "200_TC_001_retrieveOnlyElectronics",
-					"event": [
+					"name": "positiveCases",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"const expectedCategory = pm.collectionVariables.get(\"productCategory\");\r",
-									"\r",
-									"pm.test(\"Category equals collection variable\", function () {\r",
-									"    const responseCategory = pm.response.json()[0].category; \r",
-									"    pm.expect(responseCategory).to.equal(expectedCategory);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"All products retrieve have the same category\", function () {\r",
-									"    const products = pm.response.json();\r",
-									"    products.forEach(product => {\r",
-									"        pm.expect(product.category).to.equal(expectedCategory);\r",
-									"    });\r",
-									"});\r",
-									"\r",
-									"var schema = {\r",
-									"  \"type\": \"array\",\r",
-									"  \"items\": {\r",
-									"      \"type\": \"object\",\r",
-									"      \"properties\": {\r",
-									"        \"id\": {\r",
-									"          \"type\": \"integer\"\r",
-									"        },\r",
-									"        \"title\": {\r",
-									"          \"type\": \"string\"\r",
-									"        },\r",
-									"        \"price\": {\r",
-									"          \"type\": \"number\"\r",
-									"        },\r",
-									"        \"description\": {\r",
-									"          \"type\": \"string\"\r",
-									"        },\r",
-									"        \"category\": {\r",
-									"          \"type\": \"string\"\r",
-									"        },\r",
-									"        \"image\": {\r",
-									"          \"type\": \"string\"\r",
-									"        },\r",
-									"        \"rating\": {\r",
-									"          \"type\": \"object\",\r",
-									"          \"properties\": {\r",
-									"            \"rate\": {\r",
-									"              \"type\": \"number\"\r",
-									"            },\r",
-									"            \"count\": {\r",
-									"              \"type\": \"integer\"\r",
-									"            }\r",
-									"          },\r",
-									"          \"required\": [\"rate\", \"count\"]\r",
-									"        }\r",
-									"      },\r",
-									"      \"required\": [\r",
-									"        \"id\",\r",
-									"        \"title\",\r",
-									"        \"price\",\r",
-									"        \"description\",\r",
-									"        \"category\",\r",
-									"        \"image\",\r",
-									"        \"rating\"\r",
-									"      ]\r",
-									"  }\r",
-									"}\r",
-									"\r",
-									"pm.test(\"Schema validation\", function () {\r",
-									"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://fakestoreapi.com/products/category/{{productCategory}}",
-							"protocol": "https",
-							"host": [
-								"fakestoreapi",
-								"com"
+							"name": "200_TC_001_retrieveOnlyElectronics-successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const expectedCategory = pm.collectionVariables.get(\"productCategory\");\r",
+											"\r",
+											"pm.test(\"Category equals collection variable\", function () {\r",
+											"    const responseCategory = pm.response.json()[0].category; \r",
+											"    pm.expect(responseCategory).to.equal(expectedCategory);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"All products retrieve have the same category\", function () {\r",
+											"    const products = pm.response.json();\r",
+											"    products.forEach(product => {\r",
+											"        pm.expect(product.category).to.equal(expectedCategory);\r",
+											"    });\r",
+											"});\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"array\",\r",
+											"  \"items\": {\r",
+											"      \"type\": \"object\",\r",
+											"      \"properties\": {\r",
+											"        \"id\": {\r",
+											"          \"type\": \"integer\"\r",
+											"        },\r",
+											"        \"title\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"price\": {\r",
+											"          \"type\": \"number\"\r",
+											"        },\r",
+											"        \"description\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"category\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"image\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"rating\": {\r",
+											"          \"type\": \"object\",\r",
+											"          \"properties\": {\r",
+											"            \"rate\": {\r",
+											"              \"type\": \"number\"\r",
+											"            },\r",
+											"            \"count\": {\r",
+											"              \"type\": \"integer\"\r",
+											"            }\r",
+											"          },\r",
+											"          \"required\": [\"rate\", \"count\"]\r",
+											"        }\r",
+											"      },\r",
+											"      \"required\": [\r",
+											"        \"id\",\r",
+											"        \"title\",\r",
+											"        \"price\",\r",
+											"        \"description\",\r",
+											"        \"category\",\r",
+											"        \"image\",\r",
+											"        \"rating\"\r",
+											"      ]\r",
+											"  }\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
 							],
-							"path": [
-								"products",
-								"category",
-								"{{productCategory}}"
-							]
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/{{productCategory}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										"{{productCategory}}"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "NegativeCases",
+					"item": [
+						{
+							"name": "200_TC_001_retrieveOnlyElectronics-wrongCategory",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response is an empty array\", function () {\r",
+											"    \r",
+											"    const responseBody = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseBody).to.be.an('array');\r",
+											"    \r",
+											"    pm.expect(responseBody).to.have.lengthOf(0);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/wrong",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										"wrong"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_002_retrieveOnlyElectronics-emptyCategory",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    pm.expect(pm.response.text()).to.equal('');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response headers contain Content-Type\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.exist;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_003_retrieveOnlyElectronics-categoryUpperCase",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response is an empty array\", function () {\r",
+											"    \r",
+											"    const responseBody = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseBody).to.be.an('array');\r",
+											"    \r",
+											"    pm.expect(responseBody).to.have.lengthOf(0);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/ELECTRONICS",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										"ELECTRONICS"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_004_retrieveOnlyElectronics-categoryUpperCase",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const expectedCategory = pm.collectionVariables.get(\"productCategory\");\r",
+											"\r",
+											"pm.test(\"Category equals collection variable\", function () {\r",
+											"    const responseCategory = pm.response.json()[0].category; \r",
+											"    pm.expect(responseCategory).to.equal(expectedCategory);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"All products retrieve have the same category\", function () {\r",
+											"    const products = pm.response.json();\r",
+											"    products.forEach(product => {\r",
+											"        pm.expect(product.category).to.equal(expectedCategory);\r",
+											"    });\r",
+											"});\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"array\",\r",
+											"  \"items\": {\r",
+											"      \"type\": \"object\",\r",
+											"      \"properties\": {\r",
+											"        \"id\": {\r",
+											"          \"type\": \"integer\"\r",
+											"        },\r",
+											"        \"title\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"price\": {\r",
+											"          \"type\": \"number\"\r",
+											"        },\r",
+											"        \"description\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"category\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"image\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"rating\": {\r",
+											"          \"type\": \"object\",\r",
+											"          \"properties\": {\r",
+											"            \"rate\": {\r",
+											"              \"type\": \"number\"\r",
+											"            },\r",
+											"            \"count\": {\r",
+											"              \"type\": \"integer\"\r",
+											"            }\r",
+											"          },\r",
+											"          \"required\": [\"rate\", \"count\"]\r",
+											"        }\r",
+											"      },\r",
+											"      \"required\": [\r",
+											"        \"id\",\r",
+											"        \"title\",\r",
+											"        \"price\",\r",
+											"        \"description\",\r",
+											"        \"category\",\r",
+											"        \"image\",\r",
+											"        \"rating\"\r",
+											"      ]\r",
+											"  }\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/CATEGORY/{{productCategory}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"CATEGORY",
+										"{{productCategory}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_005_retrieveOnlyElectronics-sendBody",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const expectedCategory = pm.collectionVariables.get(\"productCategory\");\r",
+											"\r",
+											"pm.test(\"Category equals collection variable\", function () {\r",
+											"    const responseCategory = pm.response.json()[0].category; \r",
+											"    pm.expect(responseCategory).to.equal(expectedCategory);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"All products retrieve have the same category\", function () {\r",
+											"    const products = pm.response.json();\r",
+											"    products.forEach(product => {\r",
+											"        pm.expect(product.category).to.equal(expectedCategory);\r",
+											"    });\r",
+											"});\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"array\",\r",
+											"  \"items\": {\r",
+											"      \"type\": \"object\",\r",
+											"      \"properties\": {\r",
+											"        \"id\": {\r",
+											"          \"type\": \"integer\"\r",
+											"        },\r",
+											"        \"title\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"price\": {\r",
+											"          \"type\": \"number\"\r",
+											"        },\r",
+											"        \"description\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"category\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"image\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"rating\": {\r",
+											"          \"type\": \"object\",\r",
+											"          \"properties\": {\r",
+											"            \"rate\": {\r",
+											"              \"type\": \"number\"\r",
+											"            },\r",
+											"            \"count\": {\r",
+											"              \"type\": \"integer\"\r",
+											"            }\r",
+											"          },\r",
+											"          \"required\": [\"rate\", \"count\"]\r",
+											"        }\r",
+											"      },\r",
+											"      \"required\": [\r",
+											"        \"id\",\r",
+											"        \"title\",\r",
+											"        \"price\",\r",
+											"        \"description\",\r",
+											"        \"category\",\r",
+											"        \"image\",\r",
+											"        \"rating\"\r",
+											"      ]\r",
+											"  }\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/{{productCategory}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										"{{productCategory}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_006_retrieveOnlyElectronics-categorySQLVulnerability",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"API is not vulnerable (returns empty array)\", function () {\r",
+											"    pm.expect(pm.response.to.have.status(200));\r",
+											"\r",
+											"    const responseBody = pm.response.json();\r",
+											"    pm.expect(responseBody).to.be.an('array');\r",
+											"    pm.expect(responseBody).to.have.lengthOf(0);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/%27%20OR%201=1--",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										"%27%20OR%201=1--"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400_TC_001_retrieveOnlyElectronics-wrongCategory",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body contains expected HTML content\", function () {\r",
+											"    const responseBodyText = pm.response.text();\r",
+											"    pm.expect(responseBodyText).to.include(\"400 Bad Request\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type header is text/html\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\", \"text/html\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/electronics**%$",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										"electronics**%$"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404_TC_001_retrieveOnlyElectronics-wrongMethod",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404 Not Found\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body confirms method is not allowed\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.include(\"Cannot PATCH /products/category/electronics\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/category/{{productCategory}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"category",
+										"{{productCategory}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -118,103 +614,434 @@
 			"name": "2:retrieveSpecificProduct",
 			"item": [
 				{
-					"name": "200_TC_001_retrieveSpecificProduct",
-					"event": [
+					"name": "positiveCases",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"const expectedId = parseInt(pm.collectionVariables.get(\"productId\"));\r",
-									"const expectedTitle = pm.collectionVariables.get(\"productTitle\");\r",
-									"\r",
-									"pm.test(\"ID and Title from response equals coleections variables\", function () {\r",
-									"    const responseJson = pm.response.json();\r",
-									"    \r",
-									"    pm.expect(responseJson.id).to.equal(expectedId);\r",
-									"\r",
-									"    pm.expect(responseJson.title).to.equal(expectedTitle);\r",
-									"});\r",
-									"\r",
-									"\r",
-									"var schema = {\r",
-									"  \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"id\": {\r",
-									"      \"type\": \"integer\"\r",
-									"    },\r",
-									"    \"title\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"price\": {\r",
-									"      \"type\": \"number\"\r",
-									"    },\r",
-									"    \"description\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"category\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"image\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"rating\": {\r",
-									"      \"type\": \"object\",\r",
-									"      \"properties\": {\r",
-									"        \"rate\": {\r",
-									"          \"type\": \"number\"\r",
-									"        },\r",
-									"        \"count\": {\r",
-									"          \"type\": \"integer\"\r",
-									"        }\r",
-									"      },\r",
-									"      \"required\": [\r",
-									"        \"rate\",\r",
-									"        \"count\"\r",
-									"      ]\r",
-									"    }\r",
-									"  },\r",
-									"  \"required\": [\r",
-									"    \"id\",\r",
-									"    \"title\",\r",
-									"    \"price\",\r",
-									"    \"description\",\r",
-									"    \"category\",\r",
-									"    \"image\",\r",
-									"    \"rating\"\r",
-									"  ]\r",
-									"}\r",
-									"\r",
-									"pm.test(\"Schema validation\", function () {\r",
-									"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://fakestoreapi.com/products/{{productId}}",
-							"protocol": "https",
-							"host": [
-								"fakestoreapi",
-								"com"
+							"name": "200_TC_001_retrieveSpecificProduct-successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const expectedId = parseInt(pm.collectionVariables.get(\"productId\"));\r",
+											"const expectedTitle = pm.collectionVariables.get(\"productTitle\");\r",
+											"\r",
+											"pm.test(\"ID and Title from response equals coleections variables\", function () {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.id).to.equal(expectedId);\r",
+											"\r",
+											"    pm.expect(responseJson.title).to.equal(expectedTitle);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"price\": {\r",
+											"      \"type\": \"number\"\r",
+											"    },\r",
+											"    \"description\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"category\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"image\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"rating\": {\r",
+											"      \"type\": \"object\",\r",
+											"      \"properties\": {\r",
+											"        \"rate\": {\r",
+											"          \"type\": \"number\"\r",
+											"        },\r",
+											"        \"count\": {\r",
+											"          \"type\": \"integer\"\r",
+											"        }\r",
+											"      },\r",
+											"      \"required\": [\r",
+											"        \"rate\",\r",
+											"        \"count\"\r",
+											"      ]\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"price\",\r",
+											"    \"description\",\r",
+											"    \"category\",\r",
+											"    \"image\",\r",
+											"    \"rating\"\r",
+											"  ]\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
 							],
-							"path": [
-								"products",
-								"{{productId}}"
-							]
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "NegativeCases",
+					"item": [
+						{
+							"name": "200_TC_001_retrieveSpecificProduct-wrongProductId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.be.empty;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/9999",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"9999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_002_retrieveSpecificProduct-wrongProductId-SQLVulnerability",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.be.empty;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/%27%20OR%201=1--",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"%27%20OR%201=1--"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_003_retrieveSpecificProduct-wrongProductId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.be.empty;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/-12",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"-12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_004_retrieveSpecificProduct-wrongProductId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.be.empty;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/$$",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"$$"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_005_retrieveSpecificProduct-sendBody",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.be.empty;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/$$",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"$$"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_006_retrieveSpecificProduct-wrongProductId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.be.empty;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/ABC",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"ABC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "403_TC_001_retrieveSpecificProduct-wrongMethod",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 403 Forbidden\", function () {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.not.be.null;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "HEAD",
+								"header": [],
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -222,106 +1049,1061 @@
 			"name": "3:submitNewProduct",
 			"item": [
 				{
-					"name": "201_TC_001_createNewProduct",
-					"event": [
+					"name": "positiveCases",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"const requestBody = JSON.parse(pm.request.body.raw);\r",
-									"\r",
-									"pm.test(\"Title is the same as the request body\", function () { \r",
-									"    pm.expect(pm.response.json().title).to.equal(requestBody.title);\r",
-									"});\r",
-									"pm.test(\"Price equals the price from request body\", function () { \r",
-									"    pm.expect(pm.response.json().price).to.equal(requestBody.price);\r",
-									"});\r",
-									"pm.test(\"Description equals the same from request body\", function () { \r",
-									"    pm.expect(pm.response.json().description).to.equal(requestBody.description);\r",
-									"});\r",
-									"pm.test(\"Image equals the same from request body\", function () {\r",
-									"    pm.expect(pm.response.json().image).to.equal(requestBody.image);\r",
-									"});\r",
-									"pm.test(\"Category equals the same from request body\", function () { \r",
-									"    pm.expect(pm.response.json().category).to.equal(requestBody.category);\r",
-									"});\r",
-									"\r",
-									"\r",
-									"var schema = {\r",
-									"  \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"id\": {\r",
-									"      \"type\": \"integer\"\r",
-									"    },\r",
-									"    \"title\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"price\": {\r",
-									"      \"type\": \"number\"\r",
-									"    },\r",
-									"    \"description\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"category\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"image\": {\r",
-									"      \"type\": \"string\"\r",
-									"    }\r",
-									"  },\r",
-									"  \"required\": [\r",
-									"    \"id\",\r",
-									"    \"title\",\r",
-									"    \"price\",\r",
-									"    \"description\",\r",
-									"    \"category\",\r",
-									"    \"image\"\r",
-									"  ]\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Schema validation\", function () {\r",
-									"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "201_TC_001_createNewProduct-successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"pm.test(\"Title is the same as the request body\", function () { \r",
+											"    pm.expect(pm.response.json().title).to.equal(requestBody.title);\r",
+											"});\r",
+											"pm.test(\"Price equals the price from request body\", function () { \r",
+											"    pm.expect(pm.response.json().price).to.equal(requestBody.price);\r",
+											"});\r",
+											"pm.test(\"Description equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().description).to.equal(requestBody.description);\r",
+											"});\r",
+											"pm.test(\"Image equals the same from request body\", function () {\r",
+											"    pm.expect(pm.response.json().image).to.equal(requestBody.image);\r",
+											"});\r",
+											"pm.test(\"Category equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().category).to.equal(requestBody.category);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"price\": {\r",
+											"      \"type\": \"number\"\r",
+											"    },\r",
+											"    \"description\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"category\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"image\": {\r",
+											"      \"type\": \"string\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"price\",\r",
+											"    \"description\",\r",
+											"    \"category\",\r",
+											"    \"image\"\r",
+											"  ]\r",
+											"};\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "https://fakestoreapi.com/products",
-							"protocol": "https",
-							"host": [
-								"fakestoreapi",
-								"com"
 							],
-							"path": [
-								"products"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "NegativeCases",
+					"item": [
+						{
+							"name": "201_TC_001_createNewProduct-missingTitle",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"price\": {\r",
+											"      \"type\": \"number\"\r",
+											"    },\r",
+											"    \"description\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"category\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"image\": {\r",
+											"      \"type\": \"string\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"price\",\r",
+											"    \"description\",\r",
+											"    \"category\",\r",
+											"    \"image\"\r",
+											"  ]\r",
+											"};\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "201_TC_002_createNewProduct-missingPrice",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"price\": {\r",
+											"      \"type\": \"number\"\r",
+											"    },\r",
+											"    \"description\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"category\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"image\": {\r",
+											"      \"type\": \"string\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"description\",\r",
+											"    \"category\",\r",
+											"    \"image\"\r",
+											"  ]\r",
+											"};\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "201_TC_003_createNewProduct-missingDescription",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"price\": {\r",
+											"      \"type\": \"number\"\r",
+											"    },\r",
+											"    \"description\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"category\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"image\": {\r",
+											"      \"type\": \"string\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"price\",\r",
+											"    \"category\",\r",
+											"    \"image\"\r",
+											"  ]\r",
+											"};\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "201_TC_004_createNewProduct-missingCategory",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"price\": {\r",
+											"      \"type\": \"number\"\r",
+											"    },\r",
+											"    \"description\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"category\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"image\": {\r",
+											"      \"type\": \"string\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"price\",\r",
+											"    \"description\",\r",
+											"    \"image\"\r",
+											"  ]\r",
+											"};\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "201_TC_005_createNewProduct-missingImage",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"\r",
+											"\r",
+											"var schema = {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"price\": {\r",
+											"      \"type\": \"number\"\r",
+											"    },\r",
+											"    \"description\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"category\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"image\": {\r",
+											"      \"type\": \"string\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"price\",\r",
+											"    \"description\"\r",
+											"  ]\r",
+											"};\r",
+											"\r",
+											"pm.test(\"Schema validation\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "201_TC_007_createNewProduct-wrongTitle",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"pm.test(\"Title is the same as the request body\", function () { \r",
+											"    pm.expect(pm.response.json().title).to.equal(requestBody.title);\r",
+											"});\r",
+											"pm.test(\"Price equals the price from request body\", function () { \r",
+											"    pm.expect(pm.response.json().price).to.equal(requestBody.price);\r",
+											"});\r",
+											"pm.test(\"Description equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().description).to.equal(requestBody.description);\r",
+											"});\r",
+											"pm.test(\"Image equals the same from request body\", function () {\r",
+											"    pm.expect(pm.response.json().image).to.equal(requestBody.image);\r",
+											"});\r",
+											"pm.test(\"Category equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().category).to.equal(requestBody.category);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": 123,\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_008_createNewProduct-null-Image",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"pm.test(\"Title is the same as the request body\", function () { \r",
+											"    pm.expect(pm.response.json().title).to.equal(requestBody.title);\r",
+											"});\r",
+											"pm.test(\"Price equals the price from request body\", function () { \r",
+											"    pm.expect(pm.response.json().price).to.equal(requestBody.price);\r",
+											"});\r",
+											"pm.test(\"Description equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().description).to.equal(requestBody.description);\r",
+											"});\r",
+											"pm.test(\"Image equals the same from request body\", function () {\r",
+											"    pm.expect(pm.response.json().image).to.equal(requestBody.image);\r",
+											"});\r",
+											"pm.test(\"Category equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().category).to.equal(requestBody.category);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_008_createNewProduct-wrongHeaderContent-Type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body contains id\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property('id');\r",
+											"    pm.expect(response.id).to.be.a('number');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "image/tiff"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_009_createNewProduct-missingHeaderContent-Type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"pm.test(\"Title is the same as the request body\", function () { \r",
+											"    pm.expect(pm.response.json().title).to.equal(requestBody.title);\r",
+											"});\r",
+											"pm.test(\"Price equals the price from request body\", function () { \r",
+											"    pm.expect(pm.response.json().price).to.equal(requestBody.price);\r",
+											"});\r",
+											"pm.test(\"Description equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().description).to.equal(requestBody.description);\r",
+											"});\r",
+											"pm.test(\"Image equals the same from request body\", function () {\r",
+											"    pm.expect(pm.response.json().image).to.equal(requestBody.image);\r",
+											"});\r",
+											"pm.test(\"Category equals the same from request body\", function () { \r",
+											"    pm.expect(pm.response.json().category).to.equal(requestBody.category);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "201_TC_010_createNewProduct-missingBody",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body contains id\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property('id');\r",
+											"    pm.expect(response.id).to.be.a('number');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400_TC_001_createNewProduct-wrongPrice",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body confirms the request was bad\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.include(\"Bad Request\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": abc,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"image\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400_TC_002_createNewProduct-malformedRequestBody",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body confirms the request was bad\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.include(\"Bad Request\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400_TC_003_createNewProduct-nullBody",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body confirms the request was bad\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.include(\"Bad Request\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " null",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404_TC_001_createNewProduct-wrongMethod",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404 Not Found\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body confirms method is not allowed\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.include(\"Cannot DELETE /products\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"SMART TV SAMSUNG 49\",\r\n  \"price\": 299,\r\n  \"description\": \"Featuring a 49-inch Full HD (1920x1080) display. Connectivity options include built-in Wi-Fi, multiple HDMI and USB ports, and Bluetooth for easy device pairing.\",\r\n  \"category\": \"Electronics\",\r\n  \"\": \"http://samsung.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -329,59 +2111,619 @@
 			"name": "4:updateImageProduct",
 			"item": [
 				{
-					"name": "200_TC_001_updateImageProduct",
-					"event": [
+					"name": "positiveCases",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status Code es 200 OK\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"const requestBody = JSON.parse(pm.request.body.raw);\r",
-									"const responseImageUrl = pm.response.json().image;\r",
-									"\r",
-									"pm.test(\"Image url is the same as the request body\", function () { \r",
-									"    pm.expect(responseImageUrl).to.equal(requestBody.image);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"image\": \"https://fakeimg.pl/250x100/\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "200_TC_001_updateImageProduct-successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code es 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const responseImageUrl = pm.response.json().image;\r",
+											"\r",
+											"pm.test(\"Image url is the same as the request body\", function () { \r",
+											"    pm.expect(responseImageUrl).to.equal(requestBody.image);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "https://fakestoreapi.com/products/{{productId}}",
-							"protocol": "https",
-							"host": [
-								"fakestoreapi",
-								"com"
 							],
-							"path": [
-								"products",
-								"{{productId}}"
-							]
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"image\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "negativeCases",
+					"item": [
+						{
+							"name": "200_TC_001_updateImageProduct-wrongMethod",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 403 Forbidden\", function () {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is empty\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.not.be.null;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "HEAD",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"image\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_002_updateImageProduct-wrongProductId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code es 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const responseImageUrl = pm.response.json().image;\r",
+											"\r",
+											"pm.test(\"Image url is the same as the request body\", function () { \r",
+											"    pm.expect(responseImageUrl).to.equal(requestBody.image);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"image\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/-19",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"-19"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_003_updateImageProduct-emptyBody",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body contains id\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property('id');\r",
+											"    pm.expect(response.id).to.be.a('number');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/10",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_004_updateImageProduct-missingImage",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code es 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const responseImageUrl = pm.response.json().image;\r",
+											"\r",
+											"pm.test(\"Image url is the same as the request body\", function () { \r",
+											"    pm.expect(responseImageUrl).to.equal(requestBody.image);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_005_updateImageProduct-emptyImage",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code es 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const responseImageUrl = pm.response.json().image;\r",
+											"\r",
+											"pm.test(\"Image url is the same as the request body\", function () { \r",
+											"    pm.expect(responseImageUrl).to.equal(requestBody.image);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"image\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_006_updateImageProduct-missingHeaderContent-Type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code es 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const responseImageUrl = pm.response.json().image;\r",
+											"\r",
+											"pm.test(\"Image url is the same as the request body\", function () { \r",
+											"    pm.expect(responseImageUrl).to.equal(requestBody.image);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"image\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200_TC_007_updateImageProduct-titleInsteadOfImage",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code es 200 OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const responseImageUrl = pm.response.json().image;\r",
+											"\r",
+											"pm.test(\"Image url is the same as the request body\", function () { \r",
+											"    pm.expect(responseImageUrl).to.equal(requestBody.image);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/{{productId}}",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400_TC_001_updateImageProduct-wrongProductId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response has error status and message\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property(\"status\", \"error\");\r",
+											"    pm.expect(response).to.have.property(\"message\").equal('something went wrong! check your sent data').and.is.not.empty;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"image\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/abc",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400_TC_002_updateImageProduct-nullBody",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body confirms the request was bad\", function () {\r",
+											"    const responseBody = pm.response.text();\r",
+											"    pm.expect(responseBody).to.include(\"Bad Request\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "null",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/10",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400_TC_003_updateImageProduct-wrongProductId-SQLVulnerability",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response has error status and message\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property(\"status\", \"error\");\r",
+											"    pm.expect(response).to.have.property(\"message\").equal('something went wrong! check your sent data').and.is.not.empty;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"image\": \"https://fakeimg.pl/250x100/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://fakestoreapi.com/products/%27%20OR%201=1--",
+									"protocol": "https",
+									"host": [
+										"fakestoreapi",
+										"com"
+									],
+									"path": [
+										"products",
+										"%27%20OR%201=1--"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
